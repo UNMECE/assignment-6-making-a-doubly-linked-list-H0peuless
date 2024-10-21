@@ -49,5 +49,15 @@ void delete_coordinate(Coordinate *list_beginning, int coord_id_to_delete){//rem
       passed = 1;
     }
     if(p.next != NULL) p = *p.next;
+    else cond = 0;
   }
 }
+
+int list_length(Coordinate *list_beginning){//return the length of the list
+  Coordinate p = *list_beginning;
+  while(1){
+    if(p.next != NULL){p = *p.next;}
+    else return p.coord_id+1;
+  }
+}
+
