@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-void add_coordinate(Coordinate *list_end, float x, float y){//add's a coordinate to the end of the linked list
+void add_coordinate(Coordinate *list_end, float x, float y){//add a coordinate to the end of the linked list
   Coordinate *a = (Coordinate *)malloc(sizeof(Coordinate));
   list_end->next = a;
   a->coord_id = list_end->coord_id+1;
@@ -13,7 +13,7 @@ void add_coordinate(Coordinate *list_end, float x, float y){//add's a coordinate
   a->next = NULL;
 }
 
-void forward_display(Coordinate *list_beginning){//displays all coordinates from beginning to end
+void forward_display(const Coordinate *list_beginning){//displays all coordinates from beginning to end
   Coordinate p = *list_beginning;
   int cond = 1;
   while(cond){
@@ -26,7 +26,7 @@ void forward_display(Coordinate *list_beginning){//displays all coordinates from
   }
 }
 
-void backward_display(Coordinate *list_end){//displays all coordinates from end to beginning
+void backward_display(const Coordinate *list_end){//displays all coordinates from end to beginning
   Coordinate p = *list_end;
   int cond = 1;
   while(cond){
