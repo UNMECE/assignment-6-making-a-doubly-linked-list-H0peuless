@@ -20,7 +20,7 @@ void forward_display(Coordinate *list_beginning){//displays all coordinates from
   }
 }
 
-void backward_display(Coordinate *list_end){
+void backward_display(Coordinate *list_end){//displays all coordinates from end to beginning
   Coordinate p = *list_end;
   int cond = 1;
   while(cond){
@@ -31,5 +31,23 @@ void backward_display(Coordinate *list_end){
       cond = 0;
     }
   }
-} //displays all coordinates from end to beginning
+}
 
+void delete_coordinate(Coordinate *list_beginning, int coord_id_to_delete){//removes a coordinate from the linked list (free memory!)
+  Coordinate p = *list_beginning;
+  int passed = 0;
+  int cond =1;
+  while(cond){
+    if(passed){
+      p.coord_id--;
+    }
+    if(p.coord_id == coord_id_to_delete && passed==0){
+      p.next->previous = p.previous ;
+      p.previous->next = p.next ;
+      free(p.previous);
+      free(p.next);
+      passed = 1;
+    }
+    if(p.next != NULL) p = *p.next;
+  }
+}
