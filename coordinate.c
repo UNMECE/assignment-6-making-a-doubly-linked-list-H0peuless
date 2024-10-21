@@ -4,13 +4,13 @@
 #include <math.h>
 
 void add_coordinate(Coordinate *list_end, float x, float y){//add's a coordinate to the end of the linked list
-  Coordinate a;
-  a.coord_id = list_end->coord_id+1;
-  a.x = x;
-  a.y = y;
-  a.previous = list_end;
-  a.next = NULL;
-  list_end->next = &a;
+  Coordinate *a = (Coordinate *)malloc(sizeof(Coordinate));
+  list_end->next = a;
+  a->coord_id = list_end->coord_id+1;
+  a->x = x;
+  a->y = y;
+  a->previous = list_end;
+  a->next = NULL;
 }
 
 void forward_display(Coordinate *list_beginning){//displays all coordinates from beginning to end
@@ -40,30 +40,35 @@ void backward_display(Coordinate *list_end){//displays all coordinates from end 
 }
 
 void delete_coordinate(Coordinate *list_beginning, int coord_id_to_delete){//removes a coordinate from the linked list (free memory!)
-  Coordinate p = *list_beginning;
+  Coordinate *p = list_beginning;
   int passed = 0;
   int cond =1;
   while(cond){
     if(passed){
-      p.coord_id--;
+      p->coord_id = p->coord_id-1;
     }
-    if(p.coord_id == coord_id_to_delete && passed==0){
-      p.next->previous = p.previous ;
-      p.previous->next = p.next ;
-      free(p.previous);
-      free(p.next);
+    if(p->coord_id == coord_id_to_delete && passed==0){
+      if (p->next != NULL){p->next->previous = p->previous ;}
+      else p->next = NULL;
+
+      if (p->previous != NULL){p->previous->next = p->next ;}
+      else p->previous = NULL;
+
       passed = 1;
     }
-    if(p.next != NULL) p = *p.next;
-    else cond = 0;
+    if(p->next != NULL) p = p->next;
+    else{cond = 0;}
   }
+  //free(p);
 }
 
 int list_length(Coordinate *list_beginning){//return the length of the list
-  Coordinate p = *list_beginning;
+  Coordinate *p = list_beginning;
   while(1){
-    if(p.next != NULL){p = *p.next;}
-    else return p.coord_id+1;
+    if(p->next != NULL) {
+      p = p->next;
+    }
+    else return p->coord_id+1;
   }
 }
 
