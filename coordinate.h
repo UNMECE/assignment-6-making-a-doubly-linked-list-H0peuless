@@ -12,7 +12,7 @@ struct _coordinate
 typedef struct _coordinate Coordinate;
 
 
-void add_coordinate(Coordinate *list_end, float x, float y); //add's a coordinate to the end of the linked list
+void add_coordinate(Coordinate *list_end, float x, float y); //add a coordinate to the end of the linked list
 void forward_display(const Coordinate *list_beginning); //displays all coordinates from beginning to end
 void backward_display(const Coordinate *list_end); //displays all coordinates from end to beginning
 void delete_coordinate(Coordinate *list_beginning, int coord_id_to_delete); //removes a coordinate from the linked list (free memory!)
