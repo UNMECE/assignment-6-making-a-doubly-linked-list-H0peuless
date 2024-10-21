@@ -7,4 +7,5 @@ include_directories(.)
 
 add_executable(assignment_6_making_a_doubly_linked_list_H0peuless
     coordinate.cpp
-    coordinate.h)
+    coordinate.h
+        main.c)
