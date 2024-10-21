@@ -12,8 +12,8 @@ int main(int argc, char *argv[]){
     int lenght = atoi(argv[1]);
 
     Coordinate start;
-    start.x = rand();
-    start.y = rand();
+    start.x = abs(rand());
+    start.y = abs(rand());
     start.coord_id = 0;
     start.previous = NULL;
     start.next = NULL;
@@ -21,14 +21,15 @@ int main(int argc, char *argv[]){
     Coordinate *end = &start;
 
     for(int i = 1; i < lenght; i++) {
-        const float x = rand();
-        const float y = rand();
+        const float x = abs(rand());
+        const float y = abs(rand());
         add_coordinate(end,x,y);
         end = end->next;
     }
-    printf("avant: %d ",list_length(&start));
-    delete_coordinate(&start,2);
-    printf("apres: %d",list_length(&start));
+    int x = abs(rand());
+    int y = abs(rand());
+
+    closest_to(&start,x,y);
 
     return 0;
 }

@@ -77,12 +77,13 @@ void closest_to(Coordinate *list_beginning, float x, float y){//find the coordin
   Coordinate minC;
   Coordinate p = *list_beginning;
 
-  for(int i = 0; i < list_length(list_beginning); i++){
+  for(int i = 1; i < list_length(list_beginning); i++){
     if( sqrt(p.x -x+ p.y-y) <= min){
       min = sqrt(p.x -x+ p.y-y);
       minC = p;
       }
       p = *p.next;
   }
-  printf("The closest coordinate is frome point %i: dx=%f dy=%f\n", minC.coord_id, minC.x-x, minC.y-y);
+  printf("The closest point id is %i: dx=%f dy=%f\n", minC.coord_id, minC.x-x, minC.y-y);
+  printf("%f %f %f %f\n",x,minC.x,y,minC.y);
 }
