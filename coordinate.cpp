@@ -20,3 +20,16 @@ void forward_display(Coordinate *list_beginning){//displays all coordinates from
   }
 }
 
+void backward_display(Coordinate *list_end){
+  Coordinate p = *list_end;
+  int cond = 1;
+  while(cond){
+    printf("%f %f\n", p.x, p.y);
+    if(p.previous != NULL){
+      p = *p.previous;
+    }else{
+      cond = 0;
+    }
+  }
+} //displays all coordinates from end to beginning
+
