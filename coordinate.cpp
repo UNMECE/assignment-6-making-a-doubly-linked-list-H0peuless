@@ -1,6 +1,7 @@
 #include <coordinate.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 void add_coordinate(Coordinate *list_end, float x, float y){//add's a coordinate to the end of the linked list
   Coordinate a = {.coord_id = list_end->coord_id+1 ,.x = x, .y = y, .previous = list_end,.next = NULL};
@@ -61,3 +62,17 @@ int list_length(Coordinate *list_beginning){//return the length of the list
   }
 }
 
+void closest_to(Coordinate *list_beginning, float x, float y){//find the coordinate that is closest to the given x, y and output the distance between the 2
+  int min = sqrt(list_beginning->x-x+list_beginning->y-y);
+  Coordinate minC;
+  Coordinate p = *list_beginning;
+
+  for(int i = 0; i < list_length(list_beginning); i++){
+    if( sqrt(p.x -x+ p.y-y) <= min){
+      min = sqrt(p.x -x+ p.y-y);
+      minC = p;
+      }
+      p = *p.next;
+  }
+  printf("The closest coordinate is frome point %i: dx=%f dy=%f\n", minC.coord_id, minC.x-x, minC.y-y);
+}
