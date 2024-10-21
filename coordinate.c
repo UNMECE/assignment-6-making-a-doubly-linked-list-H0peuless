@@ -73,17 +73,17 @@ int list_length(Coordinate *list_beginning){//return the length of the list
 }
 
 void closest_to(Coordinate *list_beginning, float x, float y){//find the coordinate that is closest to the given x, y and output the distance between the 2
-  int min = sqrt(list_beginning->x-x+list_beginning->y-y);
-  Coordinate minC;
-  Coordinate p = *list_beginning;
+  double min = sqrt(pow(list_beginning->x-x,2)+pow(list_beginning->y-y,2));
+  Coordinate minC = *list_beginning;
+  Coordinate *p = list_beginning;
 
   for(int i = 1; i < list_length(list_beginning); i++){
-    if( sqrt(p.x -x+ p.y-y) <= min){
-      min = sqrt(p.x -x+ p.y-y);
-      minC = p;
+    const double norm = sqrt(pow(p->x -x,2) + pow(p->y-y,2));
+    if( norm <= min){
+      min = norm;
+      minC = *p;
       }
-      p = *p.next;
+      p = p->next;
   }
-  printf("The closest point id is %i: dx=%f dy=%f\n", minC.coord_id, minC.x-x, minC.y-y);
-  printf("%f %f %f %f\n",x,minC.x,y,minC.y);
+  printf("The closest point id is %d: dx=%f dy=%f\n", minC.coord_id, fabs(minC.x-x), fabs(minC.y-y));
 }
